@@ -11,7 +11,6 @@ const QUICK_QUESTIONS = [
   "Como faço cadastro?",
   "Como cadastrar produto?",
   "Como falar com o suporte?",
-  "Quais requisitos técnicos?",
   "Como navegar no sistema?",
 ];
 
@@ -24,14 +23,12 @@ const FAQ_RESPONSES = {
     "No modulo de produtos você pode cadastrar novos itens pelo botão 'Novo Produto'. Informe nome, codigo e descricao e salve.",
   suporte:
     "Nosso suporte funciona de segunda a sexta, das 8h as 18h. Voce pode abrir chamado pelo chat, e-mail suporte@empresa.com ou area de atendimento.",
-  requisitos:
-    "Recomendamos usar Chrome ou Firefox atualizados. Requisitos minimos: 4GB RAM, conexao de internet e browser moderno. Para producao, servidor Node/NGINX.",
   navegacao:
     "Use o menu lateral para acessar os modulos. A barra superior mostra atalhos e busca. Para voltar ao inicio, clique em Dashboard no menu.",
   privacidade:
     "Tratamos dados com confidencialidade. No futuro implementaremos aviso de privacidade e controle conforme a LGPD. Contate o suporte para detalhes.",
   default:
-    "Posso responder sobre login, cadastro, produtos, suporte, navegacao e requisitos. Clique em uma resposta rapida acima.",
+    "Posso responder sobre login, cadastro, produtos, suporte e navegacao. Clique em uma resposta rapida acima.",
 };
 
 function detectIntent(text) {
@@ -63,14 +60,6 @@ function detectIntent(text) {
     normalized.includes("item")
   ) {
     return "produto";
-  }
-
-  if (
-    normalized.includes("requisito") ||
-    normalized.includes("sistema") ||
-    normalized.includes("minimo")
-  ) {
-    return "requisitos";
   }
 
   if (

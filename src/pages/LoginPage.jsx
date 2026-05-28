@@ -1,6 +1,7 @@
 // src/pages/LoginPage.jsx
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import ChatHelpWidget from "../components/ChatHelpWidget";
 
 const FAKE_USER = { email: "admin@eletrooncologia.com", senha: "onco123" };
 
@@ -385,6 +386,7 @@ export default function LoginPage({ theme, toggleTheme }) {
         }
         @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
       `}</style>
+      <ChatHelpWidget />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import ChatHelpWidget from "../components/ChatHelpWidget";
 
 export default function CadastroPage({ theme, toggleTheme }) {
   const [nome, setNome] = useState("");
@@ -408,6 +409,7 @@ export default function CadastroPage({ theme, toggleTheme }) {
         }
         @keyframes spin { from { transform: rotate(0deg) } to { transform: rotate(360deg) } }
       `}</style>
+      <ChatHelpWidget />
     </div>
   );
 }
