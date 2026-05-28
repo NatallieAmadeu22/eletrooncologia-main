@@ -3,27 +3,35 @@ import { useEffect, useMemo, useRef, useState } from "react";
 const INITIAL_MESSAGE = {
   id: 1,
   from: "bot",
-  text: "Oi! Eu sou o assistente virtual. Posso te ajudar com login, pagamentos, suporte e navegacao.",
+  text: "Oi! Eu sou o assistente virtual. Posso te ajudar com login, suporte e navegacao.",
 };
 
 const QUICK_QUESTIONS = [
   "Nao consigo fazer login",
-  "Quais formas de pagamento?",
+  "Como faço cadastro?",
+  "Como cadastrar produto?",
   "Como falar com o suporte?",
+  "Quais requisitos técnicos?",
   "Como navegar no sistema?",
 ];
 
 const FAQ_RESPONSES = {
   login:
     "Se voce nao consegue entrar: 1) confira e-mail e senha, 2) clique em 'esqueci minha senha', 3) limpe cache do navegador e tente novamente. Se continuar, fale com o suporte.",
-  pagamentos:
-    "Aceitamos cartao de credito, boleto e PIX. O prazo de compensacao pode variar: PIX e imediato, cartao em minutos e boleto em ate 2 dias uteis.",
+  cadastro:
+    "Para criar uma conta, clique em 'Criar conta' na tela de login e preencha nome, e-mail e senha. Verifique seu e-mail caso implementemos confirmação.",
+  produto:
+    "No modulo de produtos você pode cadastrar novos itens pelo botão 'Novo Produto'. Informe nome, codigo e descricao e salve.",
   suporte:
     "Nosso suporte funciona de segunda a sexta, das 8h as 18h. Voce pode abrir chamado pelo chat, e-mail suporte@empresa.com ou area de atendimento.",
+  requisitos:
+    "Recomendamos usar Chrome ou Firefox atualizados. Requisitos minimos: 4GB RAM, conexao de internet e browser moderno. Para producao, servidor Node/NGINX.",
   navegacao:
     "Use o menu lateral para acessar os modulos. A barra superior mostra atalhos e busca. Para voltar ao inicio, clique em Dashboard no menu.",
+  privacidade:
+    "Tratamos dados com confidencialidade. No futuro implementaremos aviso de privacidade e controle conforme a LGPD. Contate o suporte para detalhes.",
   default:
-    "Posso responder sobre login, pagamentos, suporte e navegacao. Se quiser, clique em uma resposta rapida acima.",
+    "Posso responder sobre login, cadastro, produtos, suporte, navegacao e requisitos. Clique em uma resposta rapida acima.",
 };
 
 function detectIntent(text) {
@@ -42,13 +50,35 @@ function detectIntent(text) {
   }
 
   if (
-    normalized.includes("pagamento") ||
-    normalized.includes("pagar") ||
-    normalized.includes("pix") ||
-    normalized.includes("boleto") ||
-    normalized.includes("cartao")
+    normalized.includes("cadast") ||
+    normalized.includes("registrar") ||
+    normalized.includes("criar conta")
   ) {
-    return "pagamentos";
+    return "cadastro";
+  }
+
+  if (
+    normalized.includes("produto") ||
+    normalized.includes("cadastrar produto") ||
+    normalized.includes("item")
+  ) {
+    return "produto";
+  }
+
+  if (
+    normalized.includes("requisito") ||
+    normalized.includes("sistema") ||
+    normalized.includes("minimo")
+  ) {
+    return "requisitos";
+  }
+
+  if (
+    normalized.includes("privacidade") ||
+    normalized.includes("dados") ||
+    normalized.includes("lgpd")
+  ) {
+    return "privacidade";
   }
 
   if (

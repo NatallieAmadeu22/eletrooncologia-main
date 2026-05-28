@@ -5,6 +5,7 @@ import Sidebar from "./components/Sidebar";
 import Topbar from "./components/Topbar";
 import ChatHelpWidget from "./components/ChatHelpWidget";
 import LoginPage from "./pages/LoginPage";
+import CadastroPage from "./pages/CadastroPage";
 import Dashboard from "./pages/Dashboard";
 import EmpresaPage from "./pages/EmpresaPage";
 import ProdutoPage from "./pages/ProdutoPage";
@@ -36,7 +37,7 @@ function AppLayout({ theme, toggleTheme }) {
           </Routes>
         </main>
       </div>
-      <ChatHelpWidget /> 
+      <ChatHelpWidget />
     </div>
   );
 }
@@ -64,6 +65,10 @@ export default function App() {
       <Route
         path="/login"
         element={<LoginPage theme={theme} toggleTheme={toggleTheme} />}
+      />
+      <Route
+        path="/cadastro"
+        element={<CadastroPage theme={theme} toggleTheme={toggleTheme} />}
       />
       <Route
         path="/*"
