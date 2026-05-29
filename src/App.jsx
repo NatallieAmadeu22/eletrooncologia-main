@@ -21,11 +21,28 @@ function RequireAuth({ children }) {
 
 // ── Layout with sidebar ───────────────────────────────────────
 function AppLayout({ theme, toggleTheme }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
   return (
     <div className="layout-wrapper">
-      <Sidebar theme={theme} toggleTheme={toggleTheme} />
+      <Sidebar
+        theme={theme}
+        toggleTheme={toggleTheme}
+        mobileMenuOpen={mobileMenuOpen}
+        closeMobileMenu={() => setMobileMenuOpen(false)}
+      />
       <div className="main-content">
-        <Topbar theme={theme} toggleTheme={toggleTheme} />
+        <Topbar
+          theme={theme}
+          toggleTheme={toggleTheme}
+          mobileMenuOpen={mobileMenuOpen}
+          toggleMobileMenu={() => setMobileMenuOpen((value) => !value)}
+        />
         <main className="page-content">
           <Routes>
             <Route path="/" element={<Dashboard />} />
